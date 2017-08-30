@@ -12,7 +12,10 @@ public class Calculator {
     public  static double add(double a,double b){
         return  a+b;
     }
-    public static void soutadd(int a,int b){
-        System.out.println("输出结果是："+(a+b));
+    public  String soutadd(int a,int b){
+       return "输出结果是："+(a+b);
+    }
+    public void sout(String s){
+        System.out.println("say:"+s);
     }
 }
