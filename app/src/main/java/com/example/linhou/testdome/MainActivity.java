@@ -11,6 +11,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://172.22.40.109/")
+                .baseUrl("http://172.22.40.109/").addConverterFactory(GsonConverterFactory.create())
                 .build();
         IRetrofit service = retrofit.create(IRetrofit.class);
         Call<RetrofitBean> call = service.listRepos();

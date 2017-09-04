@@ -41,20 +41,20 @@ public class MainActivityTest {
 
     @Test
     public void testOnclick() throws Exception{
-//        onView(withId(R.id.one)).perform(replaceText("10"));
-//        onView(withId(R.id.two)).perform(replaceText("20"));
-//        onView(allOf(withText("计算结果"),withId(R.id.button))).perform(click());
-        try {
-            Thread.sleep(6000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        onView(withId(R.id.activity_text)).perform(typeText("20"));
-        try {
-            Thread.sleep(60000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        onView(withId(R.id.one)).perform(replaceText("10"));
+        onView(withId(R.id.two)).perform(replaceText("20"));
+        onView(allOf(withText("计算结果"),withId(R.id.button))).perform(click());
+//        try {
+//            Thread.sleep(6000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        onView(withId(R.id.activity_text)).perform(typeText("20"));
+//        try {
+//            Thread.sleep(60000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
     }
 

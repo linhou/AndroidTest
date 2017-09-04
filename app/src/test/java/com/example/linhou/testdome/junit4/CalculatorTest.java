@@ -3,6 +3,7 @@ package com.example.linhou.testdome.junit4;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
@@ -10,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
+import org.mockito.verification.Timeout;
 import org.mockito.verification.VerificationMode;
 
 import java.io.LineNumberInputStream;
@@ -46,6 +48,7 @@ import static org.mockito.Mockito.when;
 public class CalculatorTest {
 
 
+
     @Mock
     List list;
     @Spy
@@ -72,8 +75,11 @@ public class CalculatorTest {
     }
 
     @Test
-    public void add(String string) throws Exception {
+    public void add() throws Exception {
         //有返回值的单元测试，只有期望结果和真是结果
+        assertEquals(3,Calculator.add1(1,2));
+        int addNumber = Calculator.add(1, 2);
+        assertEquals(3,addNumber);
         assertEquals(3,Calculator.add(1,2));
         assertEquals(Calculator.add(1,2),3);
         //可以在使用三个参数的方法，最后一个参数是范围值
@@ -111,16 +117,14 @@ public class CalculatorTest {
         assertEquals(3,Calculator.add(2,2));
     }
 
+    //@Ignore//测试jacoco的命令时专门注释的
     //超时的操作
     @Test(timeout = 1000)
     public void add2() throws Exception {
       while (true);
     }
 
-    @Test
-    public void add3() throws Exception {
 
-    }
 
 
 
@@ -140,6 +144,7 @@ public class CalculatorTest {
         list.clear();
     }
 
+   // @Ignore//测试jacoco的命令时专门注释的
     @Test
     public void mocktest5() throws Exception{
         List li=spy(List.class);
@@ -165,6 +170,7 @@ public class CalculatorTest {
 
     }
 
+    //@Ignore //测试jacoco的命令时专门注释的
     @Test
     public void mocktest7() throws Exception{
       when(list.get(0)).thenReturn("String");

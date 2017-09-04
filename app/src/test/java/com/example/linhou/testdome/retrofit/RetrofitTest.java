@@ -1,9 +1,11 @@
 package com.example.linhou.testdome.retrofit;
 
-import android.database.Observable;
+
+import android.util.Log;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 import okhttp3.Request;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,8 +32,8 @@ public class RetrofitTest {
 
 
     private IRetrofit service;
-    @Mock
-    private IRetrofit service1;
+//    @Mock
+//    private IRetrofit service1;
 
     @Before
     public void setUp() throws Exception {
@@ -44,23 +47,16 @@ public class RetrofitTest {
 
     }
 
-
+    //@Ignore//测试jacoco的命令时专门注释的
     @Test
     public void testRetrofit() throws Exception {
         Call<RetrofitBean> calls = service.listRepos();
-        System.out.println(calls.execute().toString());
+        assertEquals(200,calls.execute().code());
+//       System.out.println(calls.execute().toString());
+//        System.out.println(calls.execute().code());
+//        Response<RetrofitBean> execute = calls.execute();
+//        Log.i("info", "testRetrofit: " + execute.body().getCode());
 
-        calls.enqueue(new Callback<RetrofitBean>() {
-            @Override
-            public void onResponse(Call<RetrofitBean> call, Response<RetrofitBean> response) {
-                System.out.println(response.toString());
-            }
-
-            @Override
-            public void onFailure(Call<RetrofitBean> call, Throwable t) {
-
-            }
-        });
 
     }
 
