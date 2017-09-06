@@ -32,6 +32,7 @@ public class RetrofitTest {
 
 
     private IRetrofit service;
+    private IRetrofit service1;
 //    @Mock
 //    private IRetrofit service1;
 
@@ -40,6 +41,7 @@ public class RetrofitTest {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://172.22.40.109/").addConverterFactory(GsonConverterFactory.create()).build();
         service = retrofit.create(IRetrofit.class);
+        service1 = new Retrofit.Builder().baseUrl("http://172.22.40.109/").build().create(IRetrofit.class);
     }
 
     @After
@@ -51,11 +53,21 @@ public class RetrofitTest {
     @Test
     public void testRetrofit() throws Exception {
         Call<RetrofitBean> calls = service.listRepos();
+        System.out.println(calls.execute().code());
         assertEquals(200,calls.execute().code());
-//       System.out.println(calls.execute().toString());
-//        System.out.println(calls.execute().code());
-//        Response<RetrofitBean> execute = calls.execute();
-//        Log.i("info", "testRetrofit: " + execute.body().getCode());
+
+    }
+    @Test
+    public void testRetrofit1() throws Exception {
+        RetrofitBean retrofitBean = null;
+//        try {
+            retrofitBean= service1.listRepos().execute().body();
+        assertEquals("0",retrofitBean.getCode());
+//        }catch (IOException exception){
+//
+//        }
+
+
 
 
     }

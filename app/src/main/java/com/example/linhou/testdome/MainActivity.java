@@ -3,6 +3,7 @@ package com.example.linhou.testdome;
 import android.support.v4.os.IResultReceiver;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 
 import com.example.linhou.testdome.retrofit.IRetrofit;
 import com.example.linhou.testdome.retrofit.RetrofitBean;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         IRetrofit service = retrofit.create(IRetrofit.class);
         Call<RetrofitBean> call = service.listRepos();
+
 
 
     }
