@@ -55,17 +55,19 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.hamcrest:hamcrest-all:1.3'
     testCompile 'org.mockito:mockito-core:1.10.19'
-    testCompile "org.robolectric:robolectric:3.4.2"
-
-
+    testCompile 'org.robolectric:robolectric:3.4.2'
     //覆盖率测试
-    testCompile "org.assertj:assertj-core:1.7.1"
+    testCompile 'org.assertj:assertj-core:1.7.1'
+    //mockwebservie Retrofit模拟网络服务器
+    testCompile 'com.squareup.okhttp3:mockwebserver:3.9.0'
     //仪表单元测试类
     //    androidTestCompile 'com.android.support:support-annotations:24.0.0'
     //    androidTestCompile 'com.android.support.test:runner:0.5'
     //    androidTestCompile 'com.android.support.test:rules:0.5'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.3'
 }
 
 //更改了时间
