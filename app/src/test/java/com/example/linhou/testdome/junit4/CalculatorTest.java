@@ -110,6 +110,12 @@ public class CalculatorTest {
         assertThat(list.size(),is(5));
     }
 
+
+    @Test
+    public  void adda() throws Exception{
+        assumeTrue(false);
+    }
+
     //@Ignore 这个注解的作用：某个方法没有完成逻辑，加入这个注解就可以将这个测试暂时略过
     @Ignore
     @Test
@@ -117,7 +123,7 @@ public class CalculatorTest {
         assertEquals(3,Calculator.add(2,2));
     }
 
-    //@Ignore//测试jacoco的命令时专门注释的
+    @Ignore  //测试jacoco的命令时专门注释的
     //超时的操作
     @Test(timeout = 1000)
     public void add2() throws Exception {

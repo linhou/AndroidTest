@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'jacoco-android'
-apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 26
@@ -28,6 +29,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        mock {
+            applicationIdSuffix = ".mock"
+        }
+        prod {
+            applicationIdSuffix = ".prod"
+        }
+    }
+    //这个的存在是因为没有mock TextUtils的存在    java.lang.RuntimeException: Method isEmpty in android.text.TextUtils not mocked.
+//    testOptions {
+//        unitTests.returnDefaultValues = true
+//    }
 
 
     android.applicationVariants.all { variant ->
@@ -64,13 +77,14 @@ dependencies {
     //    androidTestCompile 'com.android.support:support-annotations:24.0.0'
     //    androidTestCompile 'com.android.support.test:runner:0.5'
     //    androidTestCompile 'com.android.support.test:rules:0.5'
-
     //添加 commonlibs后就可以注释以下依赖了
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.squareup.okhttp3:okhttp:3.9.0'
-    compile 'io.reactivex.rxjava2:rxjava:2.1.3'
+//    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+//    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+//    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+//    compile 'io.reactivex.rxjava2:rxjava:2.1.3'
 
+    compile project(':commonlibs')
+    apt rootProject.ext.dependencies["dagger2-apt-compiler"]
 }
 
 //更改了时间
