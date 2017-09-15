@@ -118,6 +118,27 @@ public class RetrofitTest {
         mockWebServer.shutdown();
     }
 
+    @Test
+    public void testpath() throws Exception{
+        final String json2="{\"code\":0,\"message\":\"success\",\"rows\":{\"id\":6,\"startTime\":\"Aug 29, 2017 10:38:41 AM\",\"status\":\"盘点中\",\"userName\":\"admin\",\"completedSubShelf\":[{\"lightid\":1,\"labelCode\":\"T-000001\",\"labelSerial\":\"879906000000000001\",\"status\":0},{\"lightid\":3,\"labelCode\":\"T-000002\",\"labelSerial\":\"879906000000000002\",\"status\":0},{\"lightid\":5,\"labelCode\":\"T-000004\",\"labelSerial\":\"879906000000000008\",\"status\":0},{\"lightid\":6,\"labelCode\":\"T-000005\",\"labelSerial\":\"879906000000000010\",\"status\":0},{\"lightid\":7,\"labelCode\":\"T-000006\",\"labelSerial\":\"879906000000000020\",\"status\":0},{\"lightid\":8,\"labelCode\":\"T-000007\",\"labelSerial\":\"879906000000000040\",\"status\":0}]}}";
+        MockWebServer server2 = new MockWebServer();
+        server2.enqueue(new  MockResponse().setResponseCode(200) .setBody(json2));
+        server2.start();
+        HttpUrl baseUrl = server2.url("");
+        Retrofit retrofitmock = new Retrofit.Builder()
+                .baseUrl(baseUrl.toString())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        IRetrofit iServer = retrofitmock.create(IRetrofit.class);
+        System.out.println(iServer.listRepos().execute().code());
+        RecordedRequest request = server2.takeRequest();
+        assertEquals("GET /ams/pcb/inventory/ongoing HTTP/1.1", request.getRequestLine());
+        System.out.println("requestline"+request.getRequestLine() +"------url----"+request.getRequestUrl()+"headers"+request.getHeaders()+"bady"+request.getBody());
+
+
+
+    }
+
 
     @Test
     public void testmockwebServer() throws Exception{
@@ -137,6 +158,7 @@ public class RetrofitTest {
             }
         };
         testServer.setDispatcher(dispatcher);
+        testServer.start();
         RecordedRequest request = testServer.takeRequest();
         assertEquals("GET /ams/pcb/inventory/ongoing HTTP/1.1", request.getRequestLine());
         HttpUrl baseUrl = testServer.url("");

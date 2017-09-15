@@ -220,7 +220,7 @@ public class CalculatorTest {
     }
     @Test
     public void mocktest12() throws Exception{
-        //list.add("one");
+      //  list.add("one");
         verifyZeroInteractions(list);
 
     }
