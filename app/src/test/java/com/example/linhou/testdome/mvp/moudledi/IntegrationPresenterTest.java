@@ -57,9 +57,6 @@ public class IntegrationPresenterTest {
 
     @Test
     public void getApi() throws Exception {
-        model.getApi("name");
-        verify(model).getApi("name");
-        //使用mock数据，验证网络强求是否符合自己设想
         Integration integration=new Integration();
         integration.setMessage("success");
         integration.setDocumentation_url("www.baidu.com");

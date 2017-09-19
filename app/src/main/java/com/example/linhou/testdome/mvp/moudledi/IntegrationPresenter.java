@@ -52,13 +52,24 @@ public class IntegrationPresenter extends BasePresenter<IntegrationContract.Mode
         return false;
     }
 
-    public boolean isSuccess2(Integration integration){
-        if ("Not Found".equals(integration.getMessage())){
-                return true;
-            }else {
-                return false;
-            }
+    public boolean isSuccess2(Integration integration) {
+        if ("Not Found".equals(integration.getMessage())) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 
+    public  String getPersenter(boolean isboolean){
+        if (isboolean){
+            System.out.println(getModel().getClass());
+            return getModel().getClass().toString();
+    }else{
+            System.out.println(getView().getClass());
+    }
+        return getView().getClass().toString();
+    }
+
 }
+
