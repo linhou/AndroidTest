@@ -1,13 +1,25 @@
-package com.example.linhou.testdome.junit4;
-
-import android.support.v4.media.VolumeProviderCompat;
+package com.example.linhou.testdome.unitcase;
 
 /**
  * Created by Lin.Hou on 2017/8/17.
  */
 
 public class Calculator {
+        private static Calculator calculator;
+    public  Calculator  (){
 
+    }
+
+    public static Calculator getInstance(){
+        if (calculator==null){
+            synchronized (Calculator.class){
+                if (calculator==null){
+                calculator=new Calculator();
+                }
+            }
+        }
+        return calculator;
+    }
     public  static int add(int a,int b){
         return  a+b;
     }

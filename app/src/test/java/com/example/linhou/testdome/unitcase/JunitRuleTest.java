@@ -1,6 +1,5 @@
-package com.example.linhou.testdome.junit4;
+package com.example.linhou.testdome.unitcase;
 
-import org.junit.rules.DisableOnDebug;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -18,12 +17,12 @@ public class JunitRuleTest implements TestRule {
                 //在测试方法之前做一些事情
                 String className = description.getClassName();
                 String methodName = description.getMethodName();
-                System.out.println(className);
-                System.out.println(methodName);
+                System.out.println("JunitRuleTest:"+className);
+                System.out.println("JunitRuleTest:"+methodName);
                 //运行测试方法
                 base.evaluate();
                 //测试方法运行之后的事情
-                System.out.println("Class name: "+className +", method name: "+methodName);
+                System.out.println("JunitRuleTest  after: "+className +", :"+methodName+"\n");
             }
         };
     }

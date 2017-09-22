@@ -1,4 +1,4 @@
-package com.example.linhou.testdome.junit4;
+package com.example.linhou.testdome.unitcase;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

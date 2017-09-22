@@ -1,4 +1,4 @@
-package com.example.linhou.testdome.test1;
+package com.example.linhou.testdome.unit;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,7 +8,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
 
 /**
  * Created by Lin.Hou on 2017/9/14.
