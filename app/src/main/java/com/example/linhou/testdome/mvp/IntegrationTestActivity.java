@@ -1,5 +1,6 @@
 package com.example.linhou.testdome.mvp;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -14,6 +15,7 @@ import com.example.linhou.testdome.mvp.moudledi.IntegrationContract;
 import com.example.linhou.testdome.mvp.moudledi.IntegrationPresenter;
 import com.example.linhou.testdome.mvp.moudlemvp.DaggerIntegrationComponent;
 import com.example.linhou.testdome.mvp.moudlemvp.IntergrationModule;
+import com.example.linhou.testdome.robolectric.ServiceUnit;
 
 /**
  * Created by Lin.Hou on 2017/9/13.
@@ -36,7 +38,8 @@ public class IntegrationTestActivity extends BaseActiviy<IntegrationPresenter> i
                 getPresenter().getApi(mEd.getText().toString());
             }
         });
-
+        Intent mintent = new Intent(this, ServiceUnit.class);
+        startService(mintent);
 
     }
 

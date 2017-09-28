@@ -5,7 +5,9 @@ package com.example.linhou.testdome.unitcase;
  */
 
 public class Calculator {
-        private static Calculator calculator;
+        private static volatile Calculator calculator;
+    private int a;
+
     public  Calculator  (){
 
     }
@@ -36,4 +38,24 @@ public class Calculator {
     public void sout(String s){
         System.out.println("say:"+s);
     }
+    public static  int addNumber(int a,int b){
+        if (a>0&&b>0){
+            return a+b;
+        }
+        return 0;
+    }
+
+   public void setA(int a){
+       this.a=a;
+   }
+
+    public int getA() {
+        return a;
+    }
+
+    @Override
+    public String toString() {
+        return "Calculator{}";
+    }
 }
+

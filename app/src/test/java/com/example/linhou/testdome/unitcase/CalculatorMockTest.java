@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.mockito.cglib.proxy.Proxy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ import static org.mockito.Mockito.atMost;
 import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.timeout;
@@ -32,8 +34,12 @@ import static org.mockito.Mockito.when;
 
 public class CalculatorMockTest {
 
+    //Mock和Spy的区别，一个是主动性，一个是被动性的，主动性是Mock，期望调用多少次，与实际调用相比较，Spy不确定调用多少次，只能记录调用次数，传入参数等
+
     @Mock
     List list;
+
+    //监视器
     @Spy
     ArrayList spyList;
 
@@ -41,6 +47,26 @@ public class CalculatorMockTest {
     Calculator calculator1;
     @Spy
     Calculator calculator2;
+
+
+    //以下几个是测试用的
+    @Spy
+    SpyUnit spyUnit;
+
+
+    @Spy
+    SpyUnit2 spyUnit2;
+    @Spy
+    ArrayList  spyUnit2List;
+
+
+    @Spy
+    SpyUnit3 spyUnit3;
+
+    @Spy
+    Calculator spyCalculator1;
+    @Spy
+    Calculator spyCalculator2;
 
 
 
@@ -218,6 +244,55 @@ public class CalculatorMockTest {
         verify(list).add("one");
         verifyZeroInteractions(list);
     }
+
+    @Test
+    public void mockAndSpy() throws Exception{
+        spyList.add(anyString());
+        verify(spyList).add(anyString());
+
+    }
+
+    @Test
+    public void comparisonMockAndSpy() throws Exception{
+        System.out.println(list.get(0));
+
+    }
+
+    @Test
+    public void comparisonMockAndSpy1() throws Exception{
+        assertEquals(3,spyUnit.add(1,2));
+    }
+
+    @Test
+    public void comparisonMockAndSpy2() throws Exception{
+     spyUnit2.listadd(spyUnit2List);
+        verify(spyUnit2List,times(5)).add("String");
+        System.out.println("---------------------");
+    }
+
+    @Test
+    public void comparisonClassAndSpy3() throws Exception{
+        spyUnit3.add();
+        verify(spyUnit3).add();
+        assertEquals(3,spyUnit3.adds(1,2));
+
+    }
+
+    @Test
+    public void comparisonClassAndSpy4() throws Exception{
+        //mock通过动态代理的方式生成对象，但是这个对象有不是真实的对象。
+        System.out.println(spyCalculator1.hashCode());
+        System.out.println(spyCalculator2.hashCode());
+        spyCalculator1.setA(1);
+        assertEquals(1,spyCalculator2.getA());
+    }
+
+    @Test
+    public void comparisonClassAndSpy5() throws Exception{
+        assertEquals(1,spyCalculator1.getA());
+    }
+
+
 
 
 }
