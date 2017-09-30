@@ -227,6 +227,9 @@ public class CalculatorTest {
         //is()是替代了is(equalTo ())
         assertThat(true, is(3 < 4));//但是实际用到的还是is（equalTo（））方法
         assertThat(true, equalTo(3 < 4));//equalTo 匹配对象
+        //可以传入三目表达式
+        assertThat("true", equalTo((3 < 4)?"true":"false"));
+        assertThat("true", is((3 < 4)?"true":"false"));
     }
     //当然在hamcrest还有些重要库，比如：
     // anything - 总是匹配,如果你不关心测试下的对象是什么是有用的

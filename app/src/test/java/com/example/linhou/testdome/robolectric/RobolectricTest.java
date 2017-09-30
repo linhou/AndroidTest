@@ -34,6 +34,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by Lin.Hou on 2017/8/29.
+ * $MODULE_DIR$
  */
 
 @RunWith(RobolectricTestRunner.class)
