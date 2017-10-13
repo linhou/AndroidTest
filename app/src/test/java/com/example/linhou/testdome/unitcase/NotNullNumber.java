@@ -17,7 +17,7 @@ public class NotNullNumber extends TypeSafeMatcher<Double> {
     public NotNullNumber(Double number){
        this.mNumber=number;
     }
-    //第二步进行验证，false就是错误的，会提供错误信息
+    //第二步进行验证，false就是错误的，会提供错误信息，查一下double item
     @Override
     protected boolean matchesSafely(Double item) {
         if (mNumber==0){

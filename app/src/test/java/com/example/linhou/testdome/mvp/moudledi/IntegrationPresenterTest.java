@@ -8,6 +8,7 @@ import com.example.linhou.testdome.mvp.entity.Integration;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -40,12 +41,13 @@ public class IntegrationPresenterTest {
     IntegrationContract.Model model;
     @Mock
     IntegrationContract.View  view;
+    @InjectMocks
     private IntegrationPresenter integrationPresenter;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-       integrationPresenter=  new IntegrationPresenter(model,view);
+//       integrationPresenter=  new IntegrationPresenter(model,view);
     }
 
     @After
@@ -60,41 +62,22 @@ public class IntegrationPresenterTest {
         Integration integration=new Integration();
         integration.setMessage("success");
         integration.setDocumentation_url("www.baidu.com");
+        ArrayList<String> list=new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+          list.add("String"+i);
+          integration.setList(list);
+        }
         when(model.getApi("name")).thenReturn(Observable.just(integration));
         model.getApi("name").subscribe(new Action1<Integration>() {
             @Override
             public void call(Integration checkStock) {
                 assertEquals(checkStock.getMessage(),"success");
                 assertEquals(checkStock.getDocumentation_url(),"www.baidu.com");
+                assertThat(checkStock.getList().size(),is(10));
             }
         });
 
 
-
-//        Map<String,String> map=new HashMap<>();
-//        map.put("labelCode","12345");
-//        String json = GsonTools.createGsonListString(map);
-//        //验证网络请求是否执行
-//        model.getCheckStock(json);
-//        verify(model).getCheckStock(json);
-//        //使用mock数据，验证网络强求是否符合自己设想
-//        CheckStock checkstock1=new CheckStock();
-//        checkstock1.setCode("1");
-//        checkstock1.setMessage("success");
-//        List<CheckStock.RowsBean> list=new ArrayList<>();
-//        for (int i=0;i<5;i++){
-//            list.add(new CheckStock.RowsBean());
-//        }
-//        checkstock1.setRows(list);
-//        when(model.getCheckStock(json)).thenReturn(Observable.just(checkstock1));
-//        model.getCheckStock(json).subscribe(new Action1<CheckStock>() {
-//            @Override
-//            public void call(CheckStock checkStock) {
-//                assertEquals(checkStock.getCode(),"1");
-//                assertEquals(checkStock.getMessage(),"success");
-//                assertThat(checkStock.getRows().size(),is(5));//判断有几条数据，is()参数入的是几条
-//            }
-//        });
 
     }
 

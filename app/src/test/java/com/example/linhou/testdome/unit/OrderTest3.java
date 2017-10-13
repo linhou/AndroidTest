@@ -11,7 +11,7 @@ import org.junit.Test;
  */
 
 public class OrderTest3 {
-    //  BeforeClassh 和Before 不一样，首先BeforeClass只执行一遍，其次在所有函数都执行前执行，最后使用这个注解的时候需要加static关键字
+    //  BeforeClass和Before 不一样，首先BeforeClass只执行一遍，其次在所有函数都执行前执行，最后使用这个注解的时候需要加static关键字
     @BeforeClass
     public static void beforeClass() throws Exception {
         System.out.println("OrderTest：BeforeClass");

@@ -56,6 +56,8 @@ public class CalculatorMockTest {
 
     @Spy
     SpyUnit2 spyUnit2;
+    @Mock
+    SpyUnit2 mockUnit2;
     @Spy
     ArrayList  spyUnit2List;
 
@@ -142,6 +144,7 @@ public class CalculatorMockTest {
     public void correctMockforWhen() throws Exception{
         when(list.get(0)).thenReturn("String");
         System.out.println(list.get(0));
+        assertEquals("String",list.get(0));
 
     }
 
@@ -265,7 +268,10 @@ public class CalculatorMockTest {
 
     @Test
     public void comparisonMockAndSpy2() throws Exception{
-     spyUnit2.listadd(spyUnit2List);
+        mockUnit2.listadd(spyUnit2List);
+        verify(spyUnit2List,times(5)).add("String");
+        System.out.println("-------------------------");
+        spyUnit2.listadd(spyUnit2List);
         verify(spyUnit2List,times(5)).add("String");
         System.out.println("---------------------");
     }
@@ -281,6 +287,7 @@ public class CalculatorMockTest {
     @Test
     public void comparisonClassAndSpy4() throws Exception{
         //mock通过动态代理的方式生成对象，但是这个对象有不是真实的对象。
+        System.out.println(spyCalculator1.getClass().getName());
         System.out.println(spyCalculator1.hashCode());
         System.out.println(spyCalculator2.hashCode());
         spyCalculator1.setA(1);
@@ -292,9 +299,5 @@ public class CalculatorMockTest {
         assertEquals(1,spyCalculator1.getA());
     }
 
-//    Mockito *does not* delegate calls to the passed real instance, instead it actually creates a copy of it. So if you keep the real instance and interact with it, don't expect the spied to be aware of those interaction and their effect on real instance state. The corollary is that when an *unstubbed* method is called *on the spy* but *not on the real instance*, you won't see any effects on the real instance.
-//    Watch out for final methods. Mockito doesn't mock final methods so the bottom line is: when you spy on real objects + you try to stub a final method = trouble. Also you won't be able to verify those method as well.
-//最后mock的使用在调用第三方依赖库的情况特别明显，因为第三方库是别人写的，所以你无法对他进行单元测试，但是你还要依赖他的对象测试自己的内容。
-//通过new的方式就有可能产生不知名的错误，或者对他本身产生了影响。
 
 }

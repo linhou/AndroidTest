@@ -1,5 +1,8 @@
 package com.example.linhou.testdome.mvp.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Lin.Hou on 2017/9/13.
  */
@@ -13,6 +16,16 @@ public class Integration {
 
     private String message;
     private String documentation_url;
+
+    private ArrayList<String> list;
+
+    public ArrayList<String> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<String> list) {
+        this.list = list;
+    }
 
     public String getMessage() {
         return message;

@@ -232,8 +232,7 @@ public class CalculatorTest {
         assertThat("true", is((3 < 4)?"true":"false"));
     }
     //当然在hamcrest还有些重要库，比如：
-    // anything - 总是匹配,如果你不关心测试下的对象是什么是有用的
-
+    // anything - 总是匹配,如果你不关心测试下的对象是什么是有用的,用处在哪？
     //    allOf - 如果所有匹配器都匹配才匹配,  理解为Java &&
 //    anyOf - 如果任何匹配器匹配就匹配,理解为 Java ||
 //    not - 如果包装的匹配器不匹配器时匹配,反之亦然
@@ -263,7 +262,7 @@ public class CalculatorTest {
     //和Rule不同，这个需要的时候才用，
     @Test
     public void someassertforThat2() throws Exception {
-        assertThat("fStrings", is(notNullNumber(0)));
+        assertThat(true, is(notNullNumber(0)));
 
     }
 
